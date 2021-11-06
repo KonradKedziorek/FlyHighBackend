@@ -1,4 +1,4 @@
-package com.springdemo.flyhighproject.Ticket;
+package com.springdemo.flyhighproject.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,16 +13,10 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @ToString
-public class Ticket {
+public class PlaneClass {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int seatNumber;
-    private Long planeId;
-    private Double price;
-    private String destinationAirport;
-    private String takeOffPlaceAirport;
-    private Long planeClassId;
-
+    private String name;
 }

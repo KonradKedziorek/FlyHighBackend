@@ -1,8 +1,7 @@
-package com.springdemo.flyhighproject.Employee;
+package com.springdemo.flyhighproject.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 
 import javax.persistence.*;
 
@@ -10,10 +9,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class Employee {
+public class Traveler{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int accountId;
+
+    private String id;
+    private Long cardNumber;
 
 }

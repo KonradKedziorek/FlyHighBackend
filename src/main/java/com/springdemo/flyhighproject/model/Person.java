@@ -1,4 +1,4 @@
-package com.springdemo.flyhighproject.Person;
+package com.springdemo.flyhighproject.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

@@ -1,4 +1,4 @@
-package com.springdemo.flyhighproject.Card;
+package com.springdemo.flyhighproject.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,12 +13,16 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @ToString
-public class Card {
+public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cardNumber;
-    private String validThru;
-    private int CVC;
+    private Long id;
+    private int seatNumber;
+    private Long planeId;
+    private Double price;
+    private String destinationAirport;
+    private String takeOffPlaceAirport;
+    private Long planeClassId;
 
 }

@@ -1,4 +1,4 @@
-package com.springdemo.flyhighproject.Account;
+package com.springdemo.flyhighproject.model;
 
 import lombok.Getter;
 import lombok.Setter;
