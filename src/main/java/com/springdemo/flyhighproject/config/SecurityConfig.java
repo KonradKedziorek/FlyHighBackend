@@ -1,5 +1,8 @@
 package com.springdemo.flyhighproject.config;
 
+import com.springdemo.flyhighproject.model.CustomAccount;
+import com.springdemo.flyhighproject.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,16 +16,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    AccountService accountService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
+        auth.userDetailsService(accountService)
+                .passwordEncoder(passwordEncoder());
+
+/*        auth.inMemoryAuthentication()
                 .withUser("justyna")
                 .password(passwordEncoder().encode("password"))
                 .roles("USER")
                 .and()
                 .withUser("admin")
                 .password(passwordEncoder().encode("admin"))
-                .roles("ADMIN");
+                .roles("ADMIN");*/
     }
 
     @Override
