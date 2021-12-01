@@ -17,4 +17,6 @@ public class Traveler{
     private String id;
     private Long cardNumber;
 
+    
+
 }

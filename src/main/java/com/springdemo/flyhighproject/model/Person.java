@@ -22,4 +22,6 @@ public class Person {
     public Long addressId;
     public Long bankAccount;
 
+
+
 }

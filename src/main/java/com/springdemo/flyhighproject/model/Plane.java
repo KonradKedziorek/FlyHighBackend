@@ -21,4 +21,6 @@ public class Plane {
     private int numberOfSeats;
     private Long planeClassId;
 
+
+
 }
