@@ -4,10 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,9 +16,16 @@ public class Airport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String name;
     private String country;
     private String city;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "airport_plane",
+            joinColumns = @JoinColumn(name = "airport_id"),
+            inverseJoinColumns = @JoinColumn(name = "plane_id")
+    )
+    private Set<Plane> planes = new HashSet<>();
 
 }

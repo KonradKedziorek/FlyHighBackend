@@ -4,10 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,6 +15,13 @@ public class PlaneClass {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String name;
+
+    @OneToMany(mappedBy="planeClass")
+    private Set<Ticket> tickets;
+
+    @ManyToMany(mappedBy = "planeClasses")
+    Set<Plane> planes;
+
 }

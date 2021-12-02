@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -17,12 +14,22 @@ public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private int seatNumber;
-    private Long planeId;
-    private Double price;
+    private double price;
     private String destinationAirport;
     private String takeOffPlaceAirport;
-    private Long planeClassId;
+
+    @ManyToOne
+    @JoinColumn(name="person_id", nullable=false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name="plane_id", nullable=false)
+    private Plane plane;
+
+    @ManyToOne
+    @JoinColumn(name="planeClass_id", nullable=false)
+    private PlaneClass planeClass;
 
 }

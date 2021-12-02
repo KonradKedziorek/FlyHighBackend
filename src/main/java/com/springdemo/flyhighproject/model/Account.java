@@ -17,7 +17,7 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "username")
     private String username;
@@ -31,12 +31,15 @@ public class Account {
     @Column(name = "email")
     private String email;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
                 joinColumns = @JoinColumn(name = "account_id"),
                 inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+
+    @OneToOne(mappedBy = "account")
+    private User user;
 
     public Account(Account account) {
         this.id = account.getId();

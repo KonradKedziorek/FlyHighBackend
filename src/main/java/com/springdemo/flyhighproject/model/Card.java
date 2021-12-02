@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -17,8 +14,12 @@ public class Card {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cardNumber;
+    private long id;
+    private long cardNumber;
     private String validThru;
     private int CVC;
+
+    @OneToOne(mappedBy = "card")
+    private User user;
 
 }

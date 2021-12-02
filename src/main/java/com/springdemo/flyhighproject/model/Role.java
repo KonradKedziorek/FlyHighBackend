@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -13,7 +14,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -40,4 +41,7 @@ public class Role {
     public void setName(String name) {
         this.name = name;
     }
+
+    @ManyToMany(mappedBy = "roles")
+    Set<Account> accounts;
 }

@@ -14,9 +14,11 @@ public class Traveler{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long id;
-    private Long cardNumber;
+    private long id;
+    private long cardNumber;
 
-    
+    @OneToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private User user;
 
 }

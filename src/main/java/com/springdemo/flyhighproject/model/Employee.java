@@ -14,6 +14,10 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int accountId;
+    private long id;
+
+    @OneToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private User user;
 
 }
