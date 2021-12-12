@@ -28,4 +28,9 @@ public class Airport {
     )
     private Set<Plane> planes = new HashSet<>();
 
+    @OneToOne(mappedBy = "takeOffAirport")
+    private Flight flightStart;
+
+    @OneToOne(mappedBy = "touchdownAirport")
+    private Flight flightFinish;
 }

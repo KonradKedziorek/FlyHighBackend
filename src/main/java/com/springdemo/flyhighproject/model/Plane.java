@@ -33,4 +33,6 @@ public class Plane {
     @ManyToMany(mappedBy = "planes")
     Set<Airport> airports;
 
+    @OneToOne(mappedBy = "plane")
+    private Flight flight;
 }
