@@ -1,18 +1,19 @@
 package com.springdemo.flyhighproject.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @ToString
+@Builder
 public class Flight {
 
     @Id
