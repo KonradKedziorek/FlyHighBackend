@@ -3,23 +3,25 @@ package com.springdemo.flyhighproject.api;
 
 import com.springdemo.flyhighproject.model.Account;
 import com.springdemo.flyhighproject.model.Role;
+import com.springdemo.flyhighproject.payload.SignUpRequest;
 import com.springdemo.flyhighproject.service.AccountService;
 import com.springdemo.flyhighproject.service.RoleService;
+import com.springdemo.flyhighproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
+@Validated
 public class UserController {
 
     @Autowired
@@ -27,6 +29,9 @@ public class UserController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public String test(){
@@ -53,4 +58,10 @@ public class UserController {
         account.setRoles(roles);
         accountService.addAccount(account);
     }
+
+    @PostMapping("/signUp")
+    public ResponseEntity<?> registartion(@Valid @RequestBody SignUpRequest signUpRequest){
+        return ResponseEntity.ok(userService.saveUser(signUpRequest));
+    }
+
 }

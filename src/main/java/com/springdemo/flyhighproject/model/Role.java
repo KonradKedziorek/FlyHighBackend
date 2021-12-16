@@ -42,6 +42,6 @@ public class Role {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "roles")
-    Set<Account> accounts;
+//    @ManyToMany(mappedBy = "roles")
+//    Set<Account> accounts;
 }

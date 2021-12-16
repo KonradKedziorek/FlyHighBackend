@@ -1,6 +1,5 @@
 package com.springdemo.flyhighproject.config;
 
-import com.springdemo.flyhighproject.model.CustomAccount;
 import com.springdemo.flyhighproject.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -40,8 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+//                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/guest/**").permitAll()
+                .antMatchers("/user/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

@@ -1,2 +1,18 @@
-package com.springdemo.flyhighproject.config.error.response;public class MethodArgumentNotValidResponse {
+package com.springdemo.flyhighproject.config.error.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.List;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class MethodArgumentNotValidResponse {
+    private String message;
+    private List<String> details;
+    private int status;
 }

@@ -1,8 +1,6 @@
 package com.springdemo.flyhighproject.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,6 +11,8 @@ import java.util.Set;
 @Setter
 @ToString
 @Table(name = "account")
+@Builder
+@AllArgsConstructor
 public class Account {
 
     @Id

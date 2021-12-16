@@ -1,8 +1,7 @@
 package com.springdemo.flyhighproject.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -10,6 +9,9 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
 
     @Id
@@ -22,6 +24,7 @@ public class Address {
     private String zipCode;
 
     @OneToOne(mappedBy = "address")
+    @JsonIgnore
     private User user;
 
 }

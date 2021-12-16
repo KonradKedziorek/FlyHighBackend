@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface PlaneClassRepository extends JpaRepository<PlaneClass, Long> {
     PlaneClass findById(long id);
     PlaneClass findAllByName(String name);
-    PlaneClass deleteBy(long id);
+//    PlaneClass deleteBy(long id);
     PlaneClass deleteAllByName(String name);
 }
