@@ -5,18 +5,21 @@ import com.springdemo.flyhighproject.payload.SignUpRequest;
 import com.springdemo.flyhighproject.payload.SignUpResponse;
 import com.springdemo.flyhighproject.repo.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
-@AllArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private  UserRepository userRepository;
 
-    private final AddressService addressService;
+    @Autowired
+    private  AddressService addressService;
 
-    private final AccountService accountService;
+    @Autowired
+    private  AccountService accountService;
 
     public SignUpResponse saveUser(SignUpRequest signUpRequest) {
 
