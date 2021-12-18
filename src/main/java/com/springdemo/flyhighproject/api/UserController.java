@@ -45,16 +45,16 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public void addUser(){
+    public void addUser(@RequestParam("username") String username, @RequestParam("role") String role){
 
         Account account = new Account();
-        account.setUsername("Justyna");
+        account.setUsername(username);
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        account.setPassword(bCryptPasswordEncoder.encode("niemahasla"));
+        account.setPassword(bCryptPasswordEncoder.encode("123"));
         account.setPhoneNumber("65464646");
         account.setEmail("justyna@wp.pl");
         Set<Role> roles = new HashSet<>();
-        roles.add(roleService.findByName("USER"));
+        roles.add(roleService.findByName(role));
         account.setRoles(roles);
         accountService.addAccount(account);
     }
