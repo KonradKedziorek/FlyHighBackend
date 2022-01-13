@@ -19,5 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 //    User deleteAllByMiddleName(String middleName);
 //    User deleteAllBySurname(String surname);
 //    User deleteByBankAccount(long bankAccount);
-
+    boolean existsUserByPesel(String pesel);
+    boolean existsUserByBankAccount(String bankaccount);
 }

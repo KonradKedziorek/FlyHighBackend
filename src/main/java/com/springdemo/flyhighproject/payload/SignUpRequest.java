@@ -1,8 +1,6 @@
 package com.springdemo.flyhighproject.payload;
 
-import com.springdemo.flyhighproject.config.validator.UniqueEmail;
-import com.springdemo.flyhighproject.config.validator.UniquePhoneNumber;
-import com.springdemo.flyhighproject.config.validator.UniqueUsername;
+import com.springdemo.flyhighproject.config.validator.*;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
@@ -50,6 +48,8 @@ public class SignUpRequest {
     @UniqueEmail(message = "Ten email został już podany przez innego użytkownika")
     private String email;
     @NotEmpty(message = "Pole 'PESEL' nie może być puste")
+    @UniquePesel(message = "Istnieje użytkownik z podanym peselem")
+    @Size(min=11, max=11, message="Pesel musi składać się z 11 cyfr")
     private String pesel;
     @NotEmpty(message = "Pole 'Imię' nie może być puste")
     private String name;
@@ -57,6 +57,8 @@ public class SignUpRequest {
     @NotEmpty(message = "Pole 'Nazwisko' nie może być puste")
     private String surname;
     @NotEmpty(message = "Pole 'Numer konta bankowego' nie może być puste")
+    @UniqueBankAccount(message = "Istnieje użytkownik z podanym kontem bankowym")
+    @Size(min=26, max=26, message="Numer konta musi składać się z 26 cyfr")
     private String bankAccount;
     @NotEmpty(message = "Pole 'Państwo' nie może być puste")
     private String country;
