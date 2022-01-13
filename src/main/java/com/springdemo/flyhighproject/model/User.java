@@ -17,11 +17,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
-    public long pesel;
+    public String pesel;
     public String name;
     public String middleName;
     public String surname;
-    public long bankAccount;
+    public String bankAccount;
 
     @OneToOne(mappedBy = "user")
     private Employee employee;

@@ -42,7 +42,7 @@ public class AccountService implements UserDetailsService {
     }
 
     public Account createAccount(SignUpRequest signUpRequest, User user){
-        Role role = roleService.findByName("USER");
+        Role role = roleService.findByName("ROLE_USER");
 
         Set<Role> roleSet = new HashSet<Role>(List.of(role));
 
