@@ -22,6 +22,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("/user")
 @Validated
+@CrossOrigin
 public class UserController {
 
     @Autowired

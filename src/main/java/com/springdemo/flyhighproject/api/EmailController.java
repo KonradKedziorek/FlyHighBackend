@@ -1,14 +1,12 @@
 package com.springdemo.flyhighproject.api;
 
+import com.springdemo.flyhighproject.model.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -16,22 +14,26 @@ import java.io.IOException;
 
 
 @RestController
-@RequestMapping(value = "/resetPassword")
+@RequestMapping("/")
+@CrossOrigin
 public class EmailController {
 
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @PostMapping(value = "/resetPassword")
-    void sendEmail() {
+    @CrossOrigin
+    @PostMapping("/resetPassword")
+    void sendEmail(@RequestBody Email email) {
 
+        System.out.println("email: " + email);
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo("Haubary@wp.pl");
+        msg.setTo(email.getEmail());
 
         msg.setSubject("Testing from Spring Boot");
-        msg.setText("Hello World \n Spring Boot Email");
+        msg.setText("Twoje tymczasowe hasło: xyz.\nFly High Corporation" );
 
         System.out.println("Sending Email...");
+        System.out.println(msg);
         javaMailSender.send(msg);
         System.out.println("Done");
     }

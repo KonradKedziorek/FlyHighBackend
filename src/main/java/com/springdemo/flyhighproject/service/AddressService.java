@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class AddressService {
 
-    private final AddressRepository addressRepository;
+
+    private AddressRepository addressRepository;
+
 
     public Address createAddress(SignUpRequest signUpRequest) {
         return addressRepository.save(Address.builder()

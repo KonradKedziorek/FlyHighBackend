@@ -1,19 +1,18 @@
 package com.springdemo.flyhighproject.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
 @ToString
 @Builder
+@AllArgsConstructor
 @Table(name = "flight")
 public class Flight {
 
@@ -24,6 +23,8 @@ public class Flight {
     private LocalDate takeOffDate;
 
     private LocalDate touchdownDate;
+
+    //public Flight(){}
 
     @OneToOne
     @JoinColumn(name = "takeOffAirport_id", referencedColumnName = "id")

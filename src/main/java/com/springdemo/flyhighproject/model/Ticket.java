@@ -1,11 +1,13 @@
 package com.springdemo.flyhighproject.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
