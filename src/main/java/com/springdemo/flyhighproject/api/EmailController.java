@@ -29,7 +29,7 @@ public class EmailController {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(email.getEmail());
 
-        msg.setSubject("Testing from Spring Boot");
+        msg.setSubject("Fly High Password Reset");
         msg.setText("Twoje tymczasowe hasło: xyz.\nFly High Corporation" );
 
         System.out.println("Sending Email...");
