@@ -56,6 +56,21 @@ public class AccountService implements UserDetailsService {
                 .build());
     }
 
+    public void updateResetPasswordToken(String token, Account account){
+        account.setResetPasswordToken(token);
+        accountRepository.save(account);
+    }
 
+    public Account getAccountByResetPasswordToken(String token){
+        return accountRepository.findByResetPasswordToken(token);
+    }
+
+    public void updatePassowrd(Account account, String newPassword){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        account.setPassword(encodedPassword);
+        account.setResetPasswordToken(null);
+        accountRepository.save(account);
+    }
 
 }
