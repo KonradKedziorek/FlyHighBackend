@@ -65,12 +65,19 @@ public class AccountService implements UserDetailsService {
         return accountRepository.findByResetPasswordToken(token);
     }
 
-    public void updatePassowrd(Account account, String newPassword){
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(newPassword);
-        account.setPassword(encodedPassword);
-        account.setResetPasswordToken(null);
-        accountRepository.save(account);
+    public void updatePassword(String token, String newPassword, String repeatedNewPassword){
+
+        Account account = accountRepository.findByResetPasswordToken(token);
+
+        if(newPassword.equals(repeatedNewPassword)){
+            System.out.println("new paasword " + newPassword);
+            System.out.println("repeated password " + repeatedNewPassword);
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String encodedPassword = passwordEncoder.encode(newPassword);
+            account.setPassword(encodedPassword);
+            account.setResetPasswordToken(null);
+            accountRepository.save(account);
+        }
     }
 
 }
