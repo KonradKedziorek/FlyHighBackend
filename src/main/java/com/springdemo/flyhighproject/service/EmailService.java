@@ -31,7 +31,7 @@ public class EmailService {
     @Autowired
     private AccountRepository accountRepository;
 
-    void sendEmailToResetPassword(String email) {
+    public void sendEmailToResetPassword(String email) {
         Account account = accountRepository.findByEmail(email);
         String token = RandomString.make(45);
 
@@ -52,7 +52,7 @@ public class EmailService {
 
     }
 
-    void sendEmailWithAttachment() throws MessagingException, IOException {
+    public void sendEmailWithAttachment() throws MessagingException, IOException {
 
         MimeMessage msg = javaMailSender.createMimeMessage();
 
