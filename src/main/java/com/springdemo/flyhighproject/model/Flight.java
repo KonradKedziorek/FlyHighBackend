@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -20,9 +21,9 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private LocalDate takeOffDate;
+    private LocalDateTime takeOffDate;
 
-    private LocalDate touchdownDate;
+    private LocalDateTime touchdownDate;
 
     //public Flight(){}
 

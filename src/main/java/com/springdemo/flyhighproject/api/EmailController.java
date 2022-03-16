@@ -35,4 +35,10 @@ public class EmailController {
     public void sendEmailAboutFlightCancellation(@RequestParam(name = "flightId") long flightId){
         emailService.sendMailToGroup(emailService.prepareMailsAboutCancellation(flightService.getEmailsOfPassengers(flightId)));
     }
+
+    @PostMapping("/flightReservation")
+    public void sendMailAboutReservation(@RequestBody Email email, @RequestParam(name = "flightId") long flightId){
+        emailService.sendMail(emailService.prepareMailAboutReservation(email.getEmail(), flightId));
+    }
+
 }

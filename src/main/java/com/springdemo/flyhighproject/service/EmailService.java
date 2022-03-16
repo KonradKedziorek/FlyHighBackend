@@ -2,7 +2,9 @@ package com.springdemo.flyhighproject.service;
 
 import com.springdemo.flyhighproject.model.Account;
 import com.springdemo.flyhighproject.model.Email;
+import com.springdemo.flyhighproject.model.Flight;
 import com.springdemo.flyhighproject.repo.AccountRepository;
+import com.springdemo.flyhighproject.repo.FlightRepository;
 import lombok.extern.flogger.Flogger;
 import lombok.extern.java.Log;
 import net.bytebuddy.utility.RandomString;
@@ -36,6 +38,9 @@ public class EmailService {
 
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private FlightRepository flightRepository;
 
     public void sendMail(SimpleMailMessage msg) {
         if(msg != null){
@@ -86,6 +91,23 @@ public class EmailService {
             return msgs;
         }else LOGGER.info("There's no passengers for that flight.");
         return null;
+    }
+
+    public SimpleMailMessage prepareMailAboutReservation(String email, long flightId){
+
+        Flight flight = flightRepository.findById(flightId);
+        SimpleMailMessage msg = new SimpleMailMessage();
+
+        msg.setTo(email);
+        msg.setSubject("Fly High Ticket Reservation");
+        msg.setText("You have successfully made a reservation for a flight with details listed below: \n" +
+                "Flight Origin: " + flight.getTakeOffAirport().getName() + "(" + flight.getTakeOffAirport().getCity() + ", " + flight.getTakeOffAirport().getCountry() + ") \n" +
+                "Flight Destination: " + flight.getTouchdownAirport().getName() + "(" + flight.getTouchdownAirport().getCity() + ", " + flight.getTouchdownAirport().getCountry() + ") \n" +
+                "Flight take off date and time: " + flight.getTakeOffDate().getHour() + ":" + flight.getTakeOffDate().getMinute() + "\n\n" +
+                "Please, pay the fee within 12 hours or your reservation will be cancelled.\n" +
+                "FlyHigh Corporation");
+
+        return msg;
     }
 
     public void sendEmailWithAttachment() throws MessagingException, IOException {
