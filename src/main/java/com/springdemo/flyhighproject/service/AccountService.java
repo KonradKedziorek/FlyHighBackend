@@ -71,7 +71,7 @@ public class AccountService implements UserDetailsService {
         Account account = accountRepository.findByResetPasswordToken(token);
 
         if(newPassword.equals(repeatedNewPassword)){
-            System.out.println("new paasword " + newPassword);
+            System.out.println("new pasword " + newPassword);
             System.out.println("repeated password " + repeatedNewPassword);
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String encodedPassword = passwordEncoder.encode(newPassword);
