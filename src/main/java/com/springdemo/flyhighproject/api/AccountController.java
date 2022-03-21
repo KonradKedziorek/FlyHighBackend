@@ -4,6 +4,7 @@ import com.springdemo.flyhighproject.config.SecurityConfig;
 import com.springdemo.flyhighproject.model.Account;
 import com.springdemo.flyhighproject.payload.EditDataRequest;
 import com.springdemo.flyhighproject.payload.ResetPasswordRequest;
+import com.springdemo.flyhighproject.repo.AccountRepository;
 import com.springdemo.flyhighproject.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,6 +19,9 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private AccountRepository accountRepository;
+
     @PostMapping("/newPassword")
     public void updatePassword(@RequestParam(name = "token") String token, @RequestBody ResetPasswordRequest resetPasswordRequest){
         System.out.println("Token: " + token);
@@ -26,14 +30,14 @@ public class AccountController {
     }
 
     @GetMapping("/EditPersonalData")
-    public void updatePersonalData(){
-        SecurityContextHolder.getContext().getAuthentication().getName();
-//        EditDataRequest editDataRequest = new EditDataRequest(account.getUser().getName(), account.getUser().getMiddleName(),
-//                account.getUser().getSurname(),account.getUser().getAddress().getCountry(),account.getUser().getAddress().getCity(),
-//                account.getUser().getAddress().getStreet(), account.getEmail(), account.getPhoneNumber(),
-//                account.getUser().getAddress().getHouseNumber(), account.getUser().getAddress().getZipCode(), account.getUser().getBankAccount());
-//        return editDataRequest;
-        return ;
+    public EditDataRequest updatePersonalData(){
+        Account account = accountRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        EditDataRequest editDataRequest = new EditDataRequest(account.getUser().getName(), account.getUser().getMiddleName(),
+                account.getUser().getSurname(),account.getUser().getAddress().getCountry(),account.getUser().getAddress().getCity(),
+                account.getUser().getAddress().getStreet(), account.getEmail(), account.getPhoneNumber(),
+                account.getUser().getAddress().getHouseNumber(), account.getUser().getAddress().getZipCode(), account.getUser().getBankAccount());
+        System.out.println(editDataRequest);
+        return editDataRequest;
     }
 
 }

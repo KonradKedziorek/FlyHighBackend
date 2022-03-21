@@ -8,7 +8,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -44,4 +43,21 @@ public class User {
     @OneToMany(mappedBy= "user")
     private Set<Ticket> tickets;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", pesel='" + pesel + '\'' +
+                ", name='" + name + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", surname='" + surname + '\'' +
+                ", bankAccount='" + bankAccount + '\'' +
+                ", employee=" + employee +
+                ", traveler=" + traveler +
+                ", account=" + account +
+                ", address=" + address +
+                ", card=" + card +
+                ", tickets=" + tickets +
+                '}';
+    }
 }

@@ -110,6 +110,21 @@ public class EmailService {
         return msg;
     }
 
+    public SimpleMailMessage prepareMailToConfirmRegistration(String email){
+
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setTo(email);
+
+            msg.setSubject("Fly High Registration");
+            msg.setText("Welcome to Fly High!\n\n" +
+                    "Congratulations! Your registration is confirmed!\n\n" +
+                    "You have successfully completed registration for FlyHigh\n\n" +
+                    "Best,\n" +
+                    "Fly High Company");
+
+            return msg;
+    }
+
     public void sendEmailWithAttachment() throws MessagingException, IOException {
 
         MimeMessage msg = javaMailSender.createMimeMessage();

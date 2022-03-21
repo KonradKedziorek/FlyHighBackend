@@ -4,6 +4,7 @@ import com.springdemo.flyhighproject.model.Account;
 import com.springdemo.flyhighproject.model.CustomAccount;
 import com.springdemo.flyhighproject.model.Role;
 import com.springdemo.flyhighproject.model.User;
+import com.springdemo.flyhighproject.payload.EditDataRequest;
 import com.springdemo.flyhighproject.payload.SignUpRequest;
 import com.springdemo.flyhighproject.repo.AccountRepository;
 import lombok.AllArgsConstructor;
@@ -42,7 +43,7 @@ public class AccountService implements UserDetailsService {
     }
 
     public Account createAccount(SignUpRequest signUpRequest, User user){
-        Role role = roleService.findByName("ROLE_USER");
+        Role role = roleService.findByName("USER");
 
         Set<Role> roleSet = new HashSet<Role>(List.of(role));
 

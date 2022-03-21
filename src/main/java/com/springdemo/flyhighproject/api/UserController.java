@@ -3,8 +3,10 @@ package com.springdemo.flyhighproject.api;
 
 import com.springdemo.flyhighproject.model.Account;
 import com.springdemo.flyhighproject.model.Role;
+import com.springdemo.flyhighproject.payload.EditDataRequest;
 import com.springdemo.flyhighproject.payload.SignUpRequest;
 import com.springdemo.flyhighproject.service.AccountService;
+import com.springdemo.flyhighproject.service.EmailService;
 import com.springdemo.flyhighproject.service.RoleService;
 import com.springdemo.flyhighproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private EmailService emailService;
+
     @GetMapping("/")
     public String test(){
         return "Hello user";
@@ -61,8 +66,13 @@ public class UserController {
     }
 
     @PostMapping("/signUp")
-    public ResponseEntity<?> registartion(@Valid @RequestBody SignUpRequest signUpRequest){
+    public ResponseEntity<?> registration(@Valid @RequestBody SignUpRequest signUpRequest){
         return ResponseEntity.ok(userService.saveUser(signUpRequest));
+    }
+
+    @PostMapping("/saveChangedData")
+    public void saveChangedData(@RequestBody EditDataRequest editDataRequest){
+        userService.updateUserData(editDataRequest);
     }
 
 }

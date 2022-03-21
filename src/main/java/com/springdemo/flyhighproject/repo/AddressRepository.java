@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
     Address findById(long id);
+    Address findAddressByUserId(long id);
     Address findAllByCity(String city);
     Address findAllByCountry(String country);
     Address findAllByStreet(String street);

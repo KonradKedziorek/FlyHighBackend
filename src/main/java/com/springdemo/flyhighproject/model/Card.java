@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@ToString
 public class Card {
 
     @Id
@@ -22,4 +21,14 @@ public class Card {
     @OneToOne(mappedBy = "card")
     private User user;
 
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", cardNumber=" + cardNumber +
+                ", validThru='" + validThru + '\'' +
+                ", CVC=" + CVC +
+                ", user=" + user +
+                '}';
+    }
 }

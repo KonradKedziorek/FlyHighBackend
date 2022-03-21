@@ -19,7 +19,7 @@ public class EditDataRequest {
     @NotEmpty(message = "Pole 'Imię' nie może być puste")
     private String name;
 
-    private String middlename;
+    private String middleName;
 
     @NotEmpty(message = "Pole 'Nazwisko' nie może być puste")
     private String surname;
@@ -54,9 +54,9 @@ public class EditDataRequest {
     @NotEmpty(message = "Pole 'Kod pocztowy' nie może być puste")
     private String zipCode;
 
-    public EditDataRequest(String name, String middlename, String surname, String country, String city, String street, String email, String phoneNumber, String houseNumber, String zipCode, String bankAccount) {
+    public EditDataRequest(String name, String middleName, String surname, String country, String city, String street, String email, String phoneNumber, String houseNumber, String zipCode, String bankAccount) {
         this.name = name;
-        this.middlename = middlename;
+        this.middleName = middleName;
         this.surname = surname;
         this.country = country;
         this.city = city;

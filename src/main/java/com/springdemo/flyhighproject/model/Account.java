@@ -9,7 +9,6 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
 @Table(name = "account")
 @Builder
 @AllArgsConstructor
@@ -105,6 +104,20 @@ public class Account {
 
     public void setResetPasswordToken(String resetPasswordToken) {
         this.resetPasswordToken = resetPasswordToken;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", resetPasswordToken='" + resetPasswordToken + '\'' +
+                ", roles=" + roles +
+                ", user=" + user.toString() +
+                '}';
     }
 }
 

@@ -1,6 +1,7 @@
 package com.springdemo.flyhighproject.api;
 
 import com.springdemo.flyhighproject.model.Email;
+import com.springdemo.flyhighproject.payload.SignUpRequest;
 import com.springdemo.flyhighproject.service.EmailService;
 import com.springdemo.flyhighproject.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,11 @@ public class EmailController {
     @PostMapping("/flightReservation")
     public void sendMailAboutReservation(@RequestBody Email email, @RequestParam(name = "flightId") long flightId){
         emailService.sendMail(emailService.prepareMailAboutReservation(email.getEmail(), flightId));
+    }
+
+    @PostMapping("/signUp")
+    public void sendEmailToConfirmRegistration(@RequestBody Email email){
+        emailService.sendMail(emailService.prepareMailToConfirmRegistration(email.getEmail()));
     }
 
 }

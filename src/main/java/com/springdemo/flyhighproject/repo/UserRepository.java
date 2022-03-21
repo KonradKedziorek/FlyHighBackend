@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 //    User findById(long id);
-//    User findByPesel(long pesel);
+//    User findByPesel(String pesel);
 //    User findAllByName(String name);
 //    User findAllByMiddleName(String middleName);
 //    User findAllBySurname(String surname);
@@ -21,4 +21,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 //    User deleteByBankAccount(long bankAccount);
     boolean existsUserByPesel(String pesel);
     boolean existsUserByBankAccount(String bankaccount);
+    User findUserByAccount_Username(String username);
 }
