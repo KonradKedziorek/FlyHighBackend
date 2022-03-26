@@ -7,13 +7,21 @@ import com.springdemo.flyhighproject.repo.FlightRepository;
 import com.springdemo.flyhighproject.repo.TicketRepository;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 
 @Service
 public class FlightService {
 
     //@Autowired
     //private FlightRepository flightRepository;
+
     public final FlightRepository flightRepository;
 
     public final TicketRepository ticketRepository;
