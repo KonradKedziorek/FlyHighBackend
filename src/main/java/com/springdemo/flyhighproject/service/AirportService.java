@@ -14,6 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 @Service
 @Slf4j
@@ -35,11 +37,27 @@ public class AirportService {
         http.connect();
         System.out.println(http.getResponseCode() + " " + http.getResponseMessage());
 
-    final BufferedReader in = new BufferedReader(new InputStreamReader(http.getInputStream()));
-    String line;
-        while ((line = in.readLine()) != null) {
+        final BufferedReader in = new BufferedReader(new InputStreamReader(http.getInputStream()));
+        String line = in.readLine();
+    /*while ((line = in.readLine()) != null) {
         log.info(line);
-    }
+    }*/
+        JSONObject obj = new JSONObject(line);
+        JSONArray arr = obj.getJSONArray("data");
+        for(int i = 0; i < arr.length(); i++) {
+            airports.add(new AirportDTO(
+                    arr.getJSONObject(i).getString("time_zone"),
+                    arr.getJSONObject(i).getString("name"),
+                    arr.getJSONObject(i).getDouble("longitude"),
+                    arr.getJSONObject(i).getDouble("latitude"),
+                    arr.getJSONObject(i).getString("id"),
+                    arr.getJSONObject(i).getString("icao_code"),
+                    arr.getJSONObject(i).getString("iata_country_code"),
+                    arr.getJSONObject(i).getString("iata_code"),
+                    arr.getJSONObject(i).getString("city_name"),
+                    arr.getJSONObject(i).getString("city")
+            ));
+        }
 
         http.disconnect();
         return null;

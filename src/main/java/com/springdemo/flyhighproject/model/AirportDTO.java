@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -18,6 +19,7 @@ public class AirportDTO {
     private String iata_code;
     private String city_name;
     private String city;
+    public AirportDTO(String time_zone, String name, Double longitude, Double latitude, String id, String icao_code, String iata_country_code, String iata_code, String city_name, String city){}
 
     public String getTime_zone() {
         return time_zone;
