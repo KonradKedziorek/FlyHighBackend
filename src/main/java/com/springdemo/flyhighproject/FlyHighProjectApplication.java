@@ -30,7 +30,6 @@ public class FlyHighProjectApplication implements CommandLineRunner {
     public static void main(String[] args) throws IOException {
         SpringApplication.run(FlyHighProjectApplication.class, args);
 
-
         /*URL url = new URL("https://api.duffel.com/air/airports?limit=5");
         HttpURLConnection http = (HttpURLConnection)url.openConnection();
         http.setRequestMethod("GET");
