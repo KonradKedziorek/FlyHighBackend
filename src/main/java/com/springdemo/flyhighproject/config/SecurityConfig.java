@@ -56,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signUp").permitAll()
                 .antMatchers("/user/saveChangedData").permitAll()
                 .antMatchers("/SearchFlight").permitAll()
+                .antMatchers("/SearchAircrafts").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

@@ -1,8 +1,8 @@
 package com.springdemo.flyhighproject.service;
 
+import com.springdemo.flyhighproject.model.AircraftDTO;
 import com.springdemo.flyhighproject.model.AirportDTO;
-import com.springdemo.flyhighproject.repo.AirportRepository;
-import lombok.extern.slf4j.Slf4j;
+import com.springdemo.flyhighproject.repo.AircraftRepository;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +16,14 @@ import java.net.URL;
 import java.util.ArrayList;
 
 @Service
-@Slf4j
-public class AirportService {
+public class AircraftService {
 
     @Autowired
-    AirportRepository airportRepository;
+    AircraftRepository aircraftRepository;
 
-    public ArrayList<AirportDTO> getAirports() throws IOException {
-        ArrayList<AirportDTO> airports = new ArrayList<AirportDTO>();
-        URL url = new URL("https://api.duffel.com/air/airports?limit=5");
+    public ArrayList<AircraftDTO> getAircrafts() throws IOException {
+        ArrayList<AircraftDTO> aircrafts = new ArrayList<AircraftDTO>();
+        URL url = new URL("https://api.duffel.com/air/aircraft?limit=5");
         HttpURLConnection http = (HttpURLConnection)url.openConnection();
         http.setRequestMethod("GET");
         //http.setRequestProperty("Accept-Encoding", "gzip"); ten header zwraca skompresowane dane, jeżeli będziemy wiedzieli jak je zdekomprsować i chcieli to można go przywrócić
@@ -44,25 +43,13 @@ public class AirportService {
         JSONArray arr = obj.getJSONArray("data");
 
         for(int i = 0; i < arr.length(); i++) {
-            String icao;
-            if(arr.getJSONObject(i).isNull("icao_code"))
-                icao = "null";
-            else
-                icao = arr.getJSONObject(i).getString("icao_code");
-            AirportDTO obiekt = new AirportDTO(
-                    arr.getJSONObject(i).getString("time_zone"),
-                    arr.getJSONObject(i).getString("name"),
-                    arr.getJSONObject(i).getDouble("longitude"),
-                    arr.getJSONObject(i).getDouble("latitude"),
-                    arr.getJSONObject(i).getString("id"),
-                    icao,
-                    arr.getJSONObject(i).getString("iata_country_code"),
+            AircraftDTO aircraftDTO = new AircraftDTO(
                     arr.getJSONObject(i).getString("iata_code"),
-                    arr.getJSONObject(i).getString("city_name")
-                    //arr.getJSONObject(i).getString("city")
+                    arr.getJSONObject(i).getString("id"),
+                    arr.getJSONObject(i).getString("name")
             );
-            airports.add(obiekt);
-            System.out.println(airports.get(i).getCity_name());
+            aircrafts.add(aircraftDTO);
+            System.out.println(aircrafts.get(i).getName());
         }
         http.disconnect();
         return null;

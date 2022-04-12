@@ -20,6 +20,7 @@ public class AirportDTO {
     private String iata_code;
     private String city_name;
     private String city;
+
     public AirportDTO(String time_zone, String name, Double longitude, Double latitude, String id,  String iata_country_code, String iata_code, String city_name){
         this.time_zone = time_zone;
         this.name = name;
@@ -29,8 +30,8 @@ public class AirportDTO {
         this.iata_country_code = iata_country_code;
         this.iata_code = iata_code;
         this.city_name = city_name;
-
     }
+
     public AirportDTO(String time_zone, String name, Double longitude, Double latitude, String id, String icao_code, String iata_country_code, String iata_code, String city_name){
         this.time_zone = time_zone;
         this.name = name;
@@ -41,7 +42,6 @@ public class AirportDTO {
         this.iata_country_code = iata_country_code;
         this.iata_code = iata_code;
         this.city_name = city_name;
-
     }
 
     public String getTime_zone() {
